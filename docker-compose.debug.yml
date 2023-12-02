@@ -4,23 +4,24 @@ version: "3.4"
 
 services:
     backend:
+        image: ${COMPOSE_PROJECT_NAME}-backend:dev
         build:
             context: ./Backend
             target: development
         ports:
-            - 5000:8080
+            - 5000:5000
         depends_on:
             - db
         networks:
             - dev-network
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
-            # - ASPNETCORE_URLS=http://+:80
-        working_dir: /app/Backend
+            - DOTNET_USE_POLLING_FILE_WATCHER=1
+            - ASPNETCORE_URLS=http://+:5000
+        working_dir: /app
         volumes:
-            - ./Backend:/app/Backend
+            - ./Backend:/app
             - ~/.vsdbg:/remote_debugger:rw
-        entrypoint: ["dotnet", "watch"]
 
     frontend:
         image: ${COMPOSE_PROJECT_NAME}-frontend:dev
