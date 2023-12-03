@@ -1,27 +1,26 @@
-# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
-
 version: "3.4"
 
 services:
     backend:
         image: ${COMPOSE_PROJECT_NAME}-backend:prod
         build:
-            context: ./Backend
+            context: .
+            dockerfile: Backend/Dockerfile
             target: production
         ports:
             - 5000:8080
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Production
-            - ASPNETCORE_URLS=http://+:8080
         depends_on:
             - db
         networks:
             - prod-network
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
 
     frontend:
         image: ${COMPOSE_PROJECT_NAME}-frontend:prod
         build:
-            context: ./Frontend
+            context: .
+            dockerfile: Frontend/Dockerfile
             target: production
         ports:
             - 4000:4000

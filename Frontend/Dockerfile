@@ -1,11 +1,10 @@
 FROM node:20.10-alpine3.17 as base
 WORKDIR /app
-COPY ./package*.json ./
+COPY ./Frontend/package*.json .
 RUN npm install
-COPY . .
+COPY ./Frontend .
 
 FROM base as development
-CMD ["npm", "run", "start"]
 
 FROM base as build
 RUN npm run build
