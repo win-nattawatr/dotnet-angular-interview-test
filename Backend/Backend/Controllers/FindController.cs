@@ -6,9 +6,8 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class FindController(ILogger<FindController> logger, IFindService findService) : ControllerBase
+public class FindController(IFindService findService) : ControllerBase
 {
-    private readonly ILogger<FindController> _logger = logger;
     private readonly IFindService _findService = findService;
 
     [HttpPost("FindCommonElements")]
