@@ -1,9 +1,6 @@
 namespace Backend.Test.Services;
 
-using Moq;
 using Backend.Services;
-using Backend.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 
 public class FindServiceTest
 {

@@ -16,6 +16,8 @@ services:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
             - DOTNET_USE_POLLING_FILE_WATCHER=1
+            - SQLCONNSTR_EMPLOYEE_WORKING_TIME_DB=Server=db;Database=EmployeeWorkingTime;User=sa;Password=N0t@Str0ngSecreT;TrustServerCertificate=true;
+            - SQLCONNSTR_CARD_DB=Server=db;Database=Card;User=sa;Password=N0t@Str0ngSecreT;TrustServerCertificate=true;
         working_dir: /app
         volumes:
             - ./Backend:/app
@@ -41,9 +43,9 @@ services:
         image: mcr.microsoft.com/mssql/server:2022-latest
         environment:
             - ACCEPT_EULA=Y
-            - SA_PASSWORD=N0tStr0ng$ecreT
+            - MSSQL_SA_PASSWORD=N0t@Str0ngSecreT
         ports:
-            - "1433:1433"
+            - "14433:1433"
         volumes:
             - mssql-volume:/var/opt/mssql/data
         restart: always
