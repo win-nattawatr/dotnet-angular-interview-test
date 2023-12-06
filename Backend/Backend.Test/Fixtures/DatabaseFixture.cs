@@ -15,7 +15,7 @@ public class DatabaseFixture : IDisposable
         var employeeWorkingTimeDbContextOptions = employeeWorkingTimeDbContextBuilder.UseSqlServer(employeeWorkingTimeDbConnectionString).Options;
         EmployeeWorkingTimeDbContext = new EmployeeWorkingTimeDbContext(employeeWorkingTimeDbContextOptions);
 
-        var cardDbConnectionString = Environment.GetEnvironmentVariable("CARD_DB");
+        var cardDbConnectionString = Environment.GetEnvironmentVariable("SQLCONNSTR_CARD_DB");
         DbContextOptionsBuilder<CardDbContext> cardDbContextBuilder = new();
         var cardDbContextOptions = cardDbContextBuilder.UseSqlServer(cardDbConnectionString).Options;
         CardDbContext = new CardDbContext(cardDbContextOptions);
@@ -25,9 +25,8 @@ public class DatabaseFixture : IDisposable
     {
         EmployeeWorkingTimeDbContext.Dispose();
         CardDbContext.Dispose();
+        GC.SuppressFinalize(this);
     }
-
-
 }
 
 [CollectionDefinition("Database collection")]

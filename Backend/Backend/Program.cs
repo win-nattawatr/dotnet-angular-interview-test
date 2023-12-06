@@ -25,8 +25,10 @@ builder.Services.AddDbContext<CardDbContext>(option =>
 
 builder.Services.AddSingleton<IFindService, FindService>();
 builder.Services.AddScoped<IEmployeeWorkingTimeService, EmployeeWorkingTimeService>();
+builder.Services.AddScoped<ICardService, CardService>();
 
 builder.Services.AddScoped<IEmployeeWorkingTimeRepository, EmployeeWorkingTimeRepository>();
+builder.Services.AddScoped<ICardRepository, CardRepository>();
 
 var app = builder.Build();
 
