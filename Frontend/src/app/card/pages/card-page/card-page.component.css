@@ -1,0 +1,43 @@
+.card-page__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem 0.75rem;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.add-card-btn__container,
+.searchterm__container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.searchterm__container > .input-group {
+  max-width: none;
+}
+
+.cards__container {
+  display: grid;
+  padding: 1rem;
+}
+
+.empty-cards__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+@media (min-width: 576px) {
+  .card-page__container {
+    justify-content: flex-end;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+
+  .searchterm__container > .input-group {
+    max-width: 300px;
+  }
+}

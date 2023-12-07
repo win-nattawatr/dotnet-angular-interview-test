@@ -18,6 +18,7 @@ services:
             - DOTNET_USE_POLLING_FILE_WATCHER=1
             - SQLCONNSTR_EMPLOYEE_WORKING_TIME_DB=Server=db;Database=EmployeeWorkingTime;User=sa;Password=N0t@Str0ngSecreT;TrustServerCertificate=true;
             - SQLCONNSTR_CARD_DB=Server=db;Database=Card;User=sa;Password=N0t@Str0ngSecreT;TrustServerCertificate=true;
+            - ALLOWED_ORIGIN=http://localhost:4200
         working_dir: /app
         volumes:
             - ./Backend:/app
@@ -35,7 +36,7 @@ services:
         ports:
             - 4200:4200
         environment:
-            - API_BASE_URL=http://localhost:5000
+            - NG_APP_BACKEND_API_URL=http://localhost:5000
         working_dir: /app
         volumes:
             - ./Frontend:/app

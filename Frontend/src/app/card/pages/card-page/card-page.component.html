@@ -1,1 +1,28 @@
-<p>card-page works!</p>
+<div class="card-page__container">
+  <div class="add-card-btn__container">
+    <button class="btn btn-primary" (click)="addCard()">เพิ่มผลไม้</button>
+  </div>
+  <div class="searchterm__container">
+    <div class="input-group searchterm-container">
+      <span class="input-group-text">
+        <i class="bi bi-search"></i>
+      </span>
+      <input
+        [formControl]="searchTerm"
+        type="text"
+        class="form-control"
+        placeholder="ค้นหาผลไม้"
+      />
+    </div>
+  </div>
+
+  <div class="cards__container">
+    @for (card of cards; track card.id) {
+    <app-card [card]="card"></app-card>
+    } @empty {
+    <div class="empty-cards__container">
+      <span>ไม่พบผลไม้</span>
+    </div>
+    }
+  </div>
+</div>

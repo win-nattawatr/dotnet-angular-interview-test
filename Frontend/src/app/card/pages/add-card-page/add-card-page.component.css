@@ -1,0 +1,59 @@
+.add-card-page__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem 0.75rem;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 1rem;
+}
+
+.input__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+  gap: 0.5rem;
+}
+
+.actions-buttons__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .add-card-page__container {
+    justify-content: flex-end;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+
+  .form__container {
+    padding: 1rem;
+  }
+
+  .input__container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input__container > label {
+    text-align: end;
+  }
+
+  .input__container > input {
+    flex-basis: 75%;
+  }
+}
