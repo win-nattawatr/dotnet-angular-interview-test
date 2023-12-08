@@ -19,8 +19,10 @@
 }
 
 .cards__container {
+  --repeat: 1;
   display: grid;
-  padding: 1rem;
+  grid-template-columns: repeat(var(--repeat), 1fr);
+  gap: 2rem;
 }
 
 .empty-cards__container {
@@ -30,14 +32,22 @@
   padding: 1rem 0;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   .card-page__container {
     justify-content: flex-end;
     padding: 2rem;
-    gap: 1.5rem;
   }
 
   .searchterm__container > .input-group {
     max-width: 300px;
+  }
+  .cards__container {
+    --repeat: 2;
+  }
+}
+
+@media (min-width: 992px) {
+  .cards__container {
+    --repeat: 3;
   }
 }

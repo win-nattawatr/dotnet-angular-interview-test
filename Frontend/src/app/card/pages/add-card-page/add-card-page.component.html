@@ -7,10 +7,20 @@
     </div>
     <div class="input__container">
       <label>Image:</label>
-      <input type="file" class="form-control" formControlName="image" />
+      <input
+        type="file"
+        class="form-control"
+        (change)="onFileSelected($event)"
+      />
     </div>
     <div class="actions-buttons__container">
-      <button class="btn btn-success" (click)="addCard()">Save</button>
+      <button
+        class="btn btn-success"
+        (click)="addCard()"
+        [disabled]="isFileConverting"
+      >
+        Save
+      </button>
       <button class="btn btn-secondary" (click)="back()">Cancel</button>
     </div>
   </div>

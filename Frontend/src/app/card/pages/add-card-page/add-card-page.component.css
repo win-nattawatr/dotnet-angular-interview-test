@@ -32,11 +32,10 @@
   gap: 0.75rem;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   .add-card-page__container {
     justify-content: flex-end;
     padding: 2rem;
-    gap: 1.5rem;
   }
 
   .form__container {

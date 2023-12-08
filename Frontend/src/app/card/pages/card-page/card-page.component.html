@@ -19,10 +19,6 @@
   <div class="cards__container">
     @for (card of cards; track card.id) {
     <app-card [card]="card"></app-card>
-    } @empty {
-    <div class="empty-cards__container">
-      <span>ไม่พบผลไม้</span>
-    </div>
     }
   </div>
 </div>

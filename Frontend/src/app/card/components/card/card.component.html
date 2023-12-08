@@ -1,1 +1,8 @@
-<p>{{ card.name }}</p>
+<div class="card__container">
+  <div class="image__container">
+    <img [src]="card.base64ImageContent" />
+  </div>
+  <div class="name__container">
+    <span>{{ card.name }}</span>
+  </div>
+</div>

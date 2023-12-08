@@ -11,6 +11,7 @@ import {
   defer,
   of,
   switchMap,
+  tap,
 } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -32,7 +33,7 @@ export class CardPageComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.cards = [];
-    this.searchTerm = new FormControl();
+    this.searchTerm = new FormControl(null);
   }
 
   ngOnInit(): void {
@@ -55,10 +56,11 @@ export class CardPageComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.cards = res;
         },
       });
+
+    this.searchTerm.patchValue(null);
   }
 
   private destroySearch() {
