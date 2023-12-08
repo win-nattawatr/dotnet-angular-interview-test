@@ -35,8 +35,6 @@ services:
             target: development
         ports:
             - 4200:4200
-        environment:
-            - NG_APP_BACKEND_API_URL=http://localhost:5000
         working_dir: /app
         volumes:
             - ./Frontend:/app

@@ -27,8 +27,6 @@ services:
             target: production
         ports:
             - 4000:4000
-        environment:
-            - NG_APP_BACKEND_API_URL=http://localhost:5000
 
     db:
         image: mcr.microsoft.com/mssql/server:2022-latest

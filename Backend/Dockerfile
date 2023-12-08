@@ -11,10 +11,10 @@ RUN dotnet restore Backend.Test/Backend.Test.csproj
 COPY Backend/Backend.Test Backend.Test/
 
 FROM base AS build
-RUN dotnet build "Backend.csproj" -c Release -o /app/build
+RUN dotnet build Backend/Backend.csproj -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Backend.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish Backend/Backend.csproj -c Release -o /app/publish /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS production
 WORKDIR /release
