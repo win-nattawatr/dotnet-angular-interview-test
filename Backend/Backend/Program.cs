@@ -19,22 +19,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<EmployeeWorkingTimeDbContext>(option =>
+builder.Services.AddDbContext<UserDbContext>(option =>
 {
-    option.UseSqlServer(configurations.GetConnectionString("EMPLOYEE_WORKING_TIME_DB"));
+    option.UseSqlServer(configurations.GetConnectionString("APP_DB"));
 });
 
-builder.Services.AddDbContext<CardDbContext>(option =>
-{
-    option.UseSqlServer(configurations.GetConnectionString("CARD_DB"));
-});
+builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 
-builder.Services.AddSingleton<IFindService, FindService>();
-builder.Services.AddScoped<IEmployeeWorkingTimeService, EmployeeWorkingTimeService>();
-builder.Services.AddScoped<ICardService, CardService>();
-
-builder.Services.AddScoped<IEmployeeWorkingTimeRepository, EmployeeWorkingTimeRepository>();
-builder.Services.AddScoped<ICardRepository, CardRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
@@ -47,8 +39,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 
-app.EnsureMigrationDbContext<EmployeeWorkingTimeDbContext>();
-app.EnsureMigrationDbContext<CardDbContext>();
+app.EnsureMigrationDbContext<UserDbContext>();
 
 app.UseHttpsRedirection();
 

@@ -1,0 +1,43 @@
+<div class="user-management-page">
+  <div class="user-list__container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Operation</th>
+          <th scope="col">HN เจ้าของ</th>
+          <th scope="col">ชื่อเจ้าของ</th>
+          <th scope="col">เบอร์ติดต่อ</th>
+          <th scope="col">อีเมล</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of userResult.users; track user.id; let index = $index) {
+        <tr>
+          <td>
+            <button class="btn btn-secondary">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </td>
+          <td>{{ user.hn }}</td>
+          <td>{{ user.fullname }}</td>
+          <td>{{ user.phoneNumber }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="4" style="text-align: center">No users found</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+        [collectionSize]="userResult.total"
+        [(page)]="page"
+        [pageSize]="size"
+      >
+      </ngb-pagination>
+    </div>
+  </div>
+</div>

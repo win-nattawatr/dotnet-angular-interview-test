@@ -6,9 +6,6 @@ COPY Backend/Backend Backend/
 
 
 FROM base AS development
-COPY Backend/Backend.Test/Backend.Test.csproj Backend.Test/
-RUN dotnet restore Backend.Test/Backend.Test.csproj
-COPY Backend/Backend.Test Backend.Test/
 
 FROM base AS build
 RUN dotnet build Backend/Backend.csproj -c Release -o /app/build

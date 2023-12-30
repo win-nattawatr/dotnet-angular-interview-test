@@ -1,0 +1,13 @@
+.user-management-page {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem;
+  max-width: 992px;
+  margin: auto;
+}
+
+.user-list__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

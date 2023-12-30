@@ -17,13 +17,12 @@ services:
             - ASPNETCORE_ENVIRONMENT=Development
             - DOTNET_USE_POLLING_FILE_WATCHER=1
             - SQLCONNSTR_EMPLOYEE_WORKING_TIME_DB=Server=db;Database=EmployeeWorkingTime;User=sa;Password=N0t@Str0ngSecreT;TrustServerCertificate=true;
-            - SQLCONNSTR_CARD_DB=Server=db;Database=Card;User=sa;Password=N0t@Str0ngSecreT;TrustServerCertificate=true;
+            - SQLCONNSTR_APP_DB=Server=db;Database=AppDB;User=sa;Password=N0t@Str0ngSecreT;TrustServerCertificate=true;
             - ALLOWED_ORIGIN=http://localhost:4200
         working_dir: /app
         volumes:
             - ./Backend:/app
             - /app/Backend/obj/
-            - /app/Backend.Test/obj/
             - ~/.vsdbg:/remote_debugger:rw
         command: dotnet watch run --project Backend/Backend.csproj --no-launch-profile --no-restore
 
