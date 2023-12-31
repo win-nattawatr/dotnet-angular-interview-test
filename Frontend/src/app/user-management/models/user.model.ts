@@ -25,7 +25,7 @@ export class UserResult {
   total: number;
 
   constructor(data: IUserResult) {
-    this.users = data.results.map((item) => new User(item));
+    this.users = data.users.map((item) => new User(item));
     this.total = data.total;
   }
 }
@@ -40,6 +40,8 @@ export interface IUser {
 }
 
 export interface IUserResult {
-  results: IUser[];
+  users: IUser[];
   total: number;
 }
+
+export type EditableUserData = Omit<IUser, 'id' | 'hn'>;

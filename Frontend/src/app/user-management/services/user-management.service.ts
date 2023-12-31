@@ -1,69 +1,55 @@
 import { Injectable } from '@angular/core';
-import { map, of } from 'rxjs';
-import { IUser, IUserResult, User, UserResult } from '../models/user.model';
+import { Observable, map } from 'rxjs';
+import {
+  EditableUserData,
+  IUser,
+  IUserResult,
+  User,
+  UserResult,
+} from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UserManagementService {
-  constructor(private httpCilent: HttpClient) {}
+  constructor(private _httpCilent: HttpClient) {}
 
-  getUsers(page: number = 1, size?: number) {
-    return of<IUserResult>(this._mockUserResult).pipe(
-      map((res) => new UserResult(res))
-    );
+  getUsers(page: number, size: number): Observable<UserResult> {
+    const httpOptions = {
+      params: {
+        page,
+        size,
+      },
+    };
+    return this._httpCilent
+      .get<IUserResult>(
+        `${environment.apiBaseUrl}/api/UserManagement/GetUsers`,
+        httpOptions
+      )
+      .pipe(map((res) => new UserResult(res)));
   }
 
-  private _mockUserResult: IUserResult = {
-    total: 6,
-    results: [
-      {
-        id: 1,
-        hn: '000001',
-        firstname: 'firstname',
-        lastname: 'lastname',
-        phoneNumber: '0123456789',
-        email: 'mail@mail.com',
-      },
-      {
-        id: 1,
-        hn: '000001',
-        firstname: 'firstname',
-        lastname: 'lastname',
-        phoneNumber: '0123456789',
-        email: 'mail@mail.com',
-      },
-      {
-        id: 1,
-        hn: '000001',
-        firstname: 'firstname',
-        lastname: 'lastname',
-        phoneNumber: '0123456789',
-        email: 'mail@mail.com',
-      },
-      {
-        id: 1,
-        hn: '000001',
-        firstname: 'firstname',
-        lastname: 'lastname',
-        phoneNumber: '0123456789',
-        email: 'mail@mail.com',
-      },
-      {
-        id: 1,
-        hn: '000001',
-        firstname: 'firstname',
-        lastname: 'lastname',
-        phoneNumber: '0123456789',
-        email: 'mail@mail.com',
-      },
-      {
-        id: 1,
-        hn: '000001',
-        firstname: 'firstname',
-        lastname: 'lastname',
-        phoneNumber: '0123456789',
-        email: 'mail@mail.com',
-      },
-    ],
-  };
+  addUser(userData: EditableUserData): Observable<User> {
+    return this._httpCilent
+      .post<IUser>(
+        `${environment.apiBaseUrl}/api/UserManagement/Create`,
+        userData
+      )
+      .pipe(map((res) => new User(res)));
+  }
+
+  updateUser(hn: string, userData: EditableUserData): Observable<User> {
+    return this._httpCilent
+      .put<IUser>(
+        `${environment.apiBaseUrl}/api/UserManagement/Update/${hn}`,
+        userData
+      )
+      .pipe(map((res) => new User(res)));
+  }
+
+  deleteUser(hn: string): Observable<void> {
+    return this._httpCilent.delete<void>(
+      `${environment.apiBaseUrl}/api/UserManagement/Delete/${hn}`
+    );
+  }
 }

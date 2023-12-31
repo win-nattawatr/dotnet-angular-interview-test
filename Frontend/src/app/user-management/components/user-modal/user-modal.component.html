@@ -1,1 +1,81 @@
-<p>user-modal works!</p>
+<div class="modal-header">
+  <h4 class="modal-title">ข้อมูลเจ้าของ</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="dismiss()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form class="user-form" [formGroup]="userFormGroup">
+    @if(user?.hn) {
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="user-hn">HN</label>
+        <input
+          class="form-control"
+          type="text"
+          id="user-hn"
+          [value]="user?.hn"
+          readonly
+        />
+      </div>
+    </div>
+    }
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="user-firstname">ชื่อ</label>
+        <input
+          class="form-control"
+          type="text"
+          id="user-firstname"
+          formControlName="firstname"
+          [ngClass]="{ 'is-invalid': hasError('firstname') }"
+        />
+      </div>
+      <div class="col-lg-6">
+        <label for="user-lastname">นามสกุล</label>
+        <input
+          class="form-control"
+          type="text"
+          id="user-lastname"
+          formControlName="lastname"
+          [ngClass]="{ 'is-invalid': hasError('lastname') }"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="user-phone-number">เบอร์ติดต่อ</label>
+        <input
+          class="form-control"
+          type="text"
+          id="user-phone-number"
+          formControlName="phoneNumber"
+          [ngClass]="{ 'is-invalid': hasError('phoneNumber') }"
+        />
+      </div>
+      <div class="col-lg-6">
+        <label for="user-email">อีเมล</label>
+        <input
+          class="form-control"
+          type="text"
+          id="user-email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': hasError('email') }"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="dismiss()">
+    Cancel
+  </button>
+  <button type="button" class="btn btn-outline-primary" (click)="submit()">
+    {{ user ? "Save" : "Add" }}
+  </button>
+</div>

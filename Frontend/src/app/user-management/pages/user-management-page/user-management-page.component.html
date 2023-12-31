@@ -1,5 +1,8 @@
 <div class="user-management-page">
-  <div class="user-list__container">
+  <div class="actions__container">
+    <button class="btn btn-primary" (click)="openAddModal()">เพิ่ม</button>
+  </div>
+  <div class="user-list-table__container table-responsive">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -14,30 +17,38 @@
         @for (user of userResult.users; track user.id; let index = $index) {
         <tr>
           <td>
-            <button class="btn btn-secondary">
-              <i class="bi bi-pencil-square"></i>
-            </button>
+            <div class="operations">
+              <button class="btn btn-secondary" (click)="openEditModal(user)">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button class="btn btn-danger" (click)="deleteUser(user)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
           </td>
           <td>{{ user.hn }}</td>
-          <td>{{ user.fullname }}</td>
+          <td>
+            <a href="javascript: void(0)" (click)="openEditModal(user)">
+              {{ user.fullname }}
+            </a>
+          </td>
           <td>{{ user.phoneNumber }}</td>
           <td>{{ user.email }}</td>
         </tr>
         } @empty {
         <tr>
-          <td colspan="4" style="text-align: center">No users found</td>
+          <td colspan="5" style="text-align: center">No users found</td>
         </tr>
         }
       </tbody>
     </table>
-
-    <div class="d-flex justify-content-between p-2">
-      <ngb-pagination
-        [collectionSize]="userResult.total"
-        [(page)]="page"
-        [pageSize]="size"
-      >
-      </ngb-pagination>
-    </div>
+  </div>
+  <div class="pagination__container">
+    <ngb-pagination
+      [collectionSize]="userResult.total"
+      [(page)]="page"
+      [pageSize]="size"
+    >
+    </ngb-pagination>
   </div>
 </div>
